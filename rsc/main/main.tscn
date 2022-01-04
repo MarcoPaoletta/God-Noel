@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://rsc/player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://rsc/floor/floor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://rsc/spawn/spawn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://rsc/hud/hud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://rsc/background/background.tscn" type="PackedScene" id=5]
+[ext_resource path="res://rsc/to_start/to_start.tscn" type="PackedScene" id=6]
+[ext_resource path="res://rsc/main/main.gd" type="Script" id=7]
+[ext_resource path="res://rsc/music/music.tscn" type="PackedScene" id=8]
+
+[node name="main" type="Node"]
+script = ExtResource( 7 )
+
+[node name="background" parent="." instance=ExtResource( 5 )]
+
+[node name="floor" parent="." instance=ExtResource( 2 )]
+
+[node name="spawner" parent="." instance=ExtResource( 3 )]
+
+[node name="hud" parent="." instance=ExtResource( 4 )]
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 124, 242 )
+
+[node name="animated_sprite" parent="player" index="0"]
+frame = 9
+
+[node name="to_start" parent="." instance=ExtResource( 6 )]
+margin_right = 1024.0
+margin_bottom = 1400.0
+align = 2
+
+[node name="music" parent="." instance=ExtResource( 8 )]
+
+[editable path="floor"]
+[editable path="player"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://rsc/spawn/spawn.gd" type="Script" id=1]
+[ext_resource path="res://rsc/pipe/pipe.tscn" type="PackedScene" id=2]
+[ext_resource path="res://rsc/cookie/cookie.tscn" type="PackedScene" id=3]
+
+[node name="spawner" type="Node"]
+script = ExtResource( 1 )
+pipe = ExtResource( 2 )
+cookie = ExtResource( 3 )
+
+[node name="pipe" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="cookie" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="pipe" to="." method="_on_pipe_timeout"]
+[connection signal="timeout" from="cookie" to="." method="_on_cookie_timeout"]

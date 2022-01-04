@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/game_over/center.png" type="Texture" id=1]
+[ext_resource path="res://assets/game_over/top.png" type="Texture" id=2]
+[ext_resource path="res://rsc/game_over/game_over.gd" type="Script" id=3]
+[ext_resource path="res://assets/zorque.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/game_over/lobby.png" type="Texture" id=5]
+[ext_resource path="res://rsc/play_sound/play_sound.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 4
+font_data = ExtResource( 4 )
+
+[node name="game_over" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_right = 256.0
+margin_bottom = 700.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="aux_color" type="ColorRect" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.823529, 0.333333, 0.219608, 1 )
+
+[node name="top" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -170.5
+margin_top = 8.0
+margin_right = 170.5
+margin_bottom = 185.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="center" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -238.0
+margin_top = -137.5
+margin_right = 238.0
+margin_bottom = 281.5
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lobby_button" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -86.0
+texture_normal = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -130.0
+margin_right = -18.0
+margin_bottom = -52.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "X0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="high_score" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = 14.0
+margin_right = -18.0
+margin_bottom = 92.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "X0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cookies" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = 174.0
+margin_right = -18.0
+margin_bottom = 252.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "X0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="play_sound" parent="." instance=ExtResource( 6 )]
+
+[connection signal="pressed" from="lobby_button" to="." method="_on_lobby_button_pressed"]

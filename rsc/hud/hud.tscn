@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/zorque.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://rsc/hud/hud.gd" type="Script" id=2]
+[ext_resource path="res://rsc/cookie_panel/cookie_panel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audios/cookie.wav" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 1 )
+
+[node name="hud" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cookie_panel" parent="." instance=ExtResource( 3 )]
+
+[node name="score_timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="score" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.466667 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -42.5
+margin_bottom = 42.5
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cookie" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="timeout" from="score_timer" to="." method="_on_score_timer_timeout"]
+
+[editable path="cookie_panel"]

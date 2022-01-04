@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/floor.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Control
+
+func _process(delta):
+	if global.alive:
+		for nodes in get_tree().get_nodes_in_group(\"floor\"):
+			nodes.rect_position.x -= global.velocity * delta
+			if nodes.rect_position.x <= -get_viewport().size.x:
+				nodes.rect_position.x += get_viewport().size.x
+		
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2048, 16 )
+
+[node name="floor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 512.0
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="top" type="TextureRect" parent="." groups=["floor"]]
+margin_right = 1024.0
+margin_bottom = 32.0
+texture = ExtResource( 1 )
+stretch_mode = 2
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="static_body_2d" type="StaticBody2D" parent="top"]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="top/static_body_2d"]
+position = Vector2( 2048, 16 )
+shape = SubResource( 1 )
+
+[node name="bottom" type="TextureRect" parent="." groups=["floor"]]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -32.0
+margin_right = 1024.0
+texture = ExtResource( 1 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="static_body_2d" type="StaticBody2D" parent="bottom"]
+position = Vector2( 0, -668 )
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="bottom/static_body_2d"]
+position = Vector2( 2048, 684 )
+shape = SubResource( 1 )
